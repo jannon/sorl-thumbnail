@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 from __future__ import division
 import math
 
@@ -52,13 +52,13 @@ class EngineBase(object):
         """
         colorspace = options['colorspace']
         return self._colorspace(image, colorspace)
-        
+
     def remove_border(self, image, options):
-    
+
         if options.get('remove_border', False):
             x_image, y_image = self.get_image_size(image)
             image = self._remove_border(image, x_image, y_image)
-    
+
         return image
 
     def _calculate_scaling_factor(self, x_image, y_image, geometry, options):
@@ -204,13 +204,13 @@ class EngineBase(object):
             RGB, GRAY
         """
         raise NotImplemented()
-        
+
     def _remove_border(self, image, image_width, image_height):
         """
         Remove borders around images
         """
         raise NotImplemented()
-            
+
     def _entropy_crop(self, image, geometry_width, geometry_height, image_width, image_height):
         """
         Crop the image to the correct aspect ratio
@@ -237,18 +237,17 @@ class EngineBase(object):
         """
         raise NotImplemented()
 
-    def _padding(image, geometry, options):
+    def _padding(self, image, geometry, options):
         """
         Pads the image
         """
         raise NotImplemented()
-    
-    def _cropbox(image, x, y, x2, y2):
-        raise NotImplemented()
-    
-    def _rounded(image, r):
-        raise NotImplemented()
-    
-    def _blur(image, radius):
+
+    def _cropbox(self, image, x, y, x2, y2):
         raise NotImplemented()
 
+    def _rounded(self, image, r):
+        raise NotImplemented()
+
+    def _blur(self, image, radius):
+        raise NotImplemented()

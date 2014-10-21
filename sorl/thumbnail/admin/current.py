@@ -25,9 +25,9 @@ class AdminImageWidget(forms.ClearableFileInput):
             ext = 'JPG'
             try:
                 aux_ext = str(value).split('.')
-                if aux_ext[len(aux_ext)-1].lower() == 'png':
+                if aux_ext[len(aux_ext) - 1].lower() == 'png':
                     ext = 'PNG'
-            except: 
+            except:
                 pass
             try:
                 mini = get_thumbnail(value, 'x80', upscale=False, format=ext)
@@ -35,10 +35,10 @@ class AdminImageWidget(forms.ClearableFileInput):
                 logger.warn("Unable to get the thumbnail", exc_info=e)
             else:
                 output = (
-                             '<div style="float:left">'
-                             '<a style="width:%spx;display:block;margin:0 0 10px" class="thumbnail" target="_blank" href="%s">'
-                             '<img src="%s"></a>%s</div>'
-                         ) % (mini.width, value.url, mini.url, output)
+                    '<div style="float:left">'
+                    '<a style="width:%spx;display:block;margin:0 0 10px" class="thumbnail" target="_blank" href="%s">'
+                    '<img src="%s"></a>%s</div>'
+                ) % (mini.width, value.url, mini.url, output)
         return mark_safe(output)
 
 
@@ -53,4 +53,3 @@ class AdminImageMixin(object):
             return db_field.formfield(widget=AdminImageWidget)
         sup = super(AdminImageMixin, self)
         return sup.formfield_for_dbfield(db_field, **kwargs)
-

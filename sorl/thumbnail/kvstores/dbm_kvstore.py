@@ -12,16 +12,21 @@ except ImportError:
 #
 if os.name == 'nt':
     import msvcrt
+
     def lock(f, readonly):
         msvcrt.locking(f.fileno(), msvcrt.LK_LOCK, 1)
+
     def unlock(f):
         msvcrt.locking(f.fileno(), msvcrt.LK_UNLCK, 1)
 else:
     import fcntl
+
     def lock(f, readonly):
         fcntl.lockf(f.fileno(), fcntl.LOCK_SH if readonly else fcntl.LOCK_EX)
+
     def unlock(f):
         fcntl.lockf(f.fileno(), fcntl.LOCK_UN)
+
 
 #
 # A context manager to access the key-value store in a concurrent-safe manner.
@@ -44,6 +49,7 @@ class DBMContext(object):
         self.db.close()
         unlock(self.lockfile)
         self.lockfile.close()
+
 
 #
 # Please note that all the coding effort is devoted to provide correct
@@ -78,4 +84,3 @@ class KVStore(KVStoreBase):
         with DBMContext(self.filename, self.mode, True) as db:
             p = self._cast_key(prefix)
             return [k.decode('utf-8') for k in db.keys() if k.startswith(p)]
-

@@ -7,7 +7,10 @@ from sorl.thumbnail.compat import BufferIO
 try:
     from PIL import Image, ImageFile, ImageDraw, ImageChops, ImageFilter
 except ImportError:
-    import Image, ImageFile, ImageDraw, ImageChops
+    import Image
+    import ImageFile
+    import ImageDraw
+    import ImageChops
 
 
 def round_corner(radius, fill):

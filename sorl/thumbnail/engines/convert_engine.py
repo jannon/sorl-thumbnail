@@ -99,7 +99,7 @@ class Engine(EngineBase):
         return retcode == 0
 
     def _orientation(self, image):
-        #return image
+        # return image
         # XXX need to get the dimensions right after a transpose.
 
         if settings.THUMBNAIL_CONVERT.endswith('gm convert'):

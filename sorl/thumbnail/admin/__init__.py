@@ -5,5 +5,4 @@ except ImportError:
 else:
     from .current import AdminImageMixin
 
-AdminInlineImageMixin = AdminImageMixin # backwards compatibility
-
+AdminInlineImageMixin = AdminImageMixin  # backwards compatibility

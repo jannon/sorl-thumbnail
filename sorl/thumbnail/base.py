@@ -72,13 +72,12 @@ class ThumbnailBackend(object):
         else:
             return None
 
-        #preserve image filetype
+        # preserve image filetype
         if settings.THUMBNAIL_PRESERVE_FORMAT:
             options.setdefault('format', self._get_format(source))
 
         for key, value in self.default_options.items():
             options.setdefault(key, value)
-
 
         # For the future I think it is better to add options only if they
         # differ from the default settings as below. This will ensure the same
