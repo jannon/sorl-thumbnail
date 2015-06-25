@@ -1,16 +1,15 @@
-from __future__ import division
+from __future__ import unicode_literals, division
 
 import math
 from sorl.thumbnail.engines.base import EngineBase
 from sorl.thumbnail.compat import BufferIO
 
 try:
-    from PIL import Image, ImageFile, ImageDraw, ImageChops, ImageFilter
+    from PIL import Image, ImageFile, ImageDraw, ImageFilter
 except ImportError:
     import Image
     import ImageFile
     import ImageDraw
-    import ImageChops
 
 
 def round_corner(radius, fill):
@@ -105,9 +104,6 @@ class Engine(EngineBase):
         return image
 
     def _remove_border(self, image, image_width, image_height):
-
-        image_entropy = self._get_image_entropy(image)
-
         borders = {
             'top': lambda iy, dy, y: (dy, dy + y),
             'right': lambda ix, dx, x: (ix - dx - x, ix - dx),
@@ -139,8 +135,8 @@ class Engine(EngineBase):
                 else:
                     break
 
-        return image.crop(
-            (offset['left'], offset['top'], image_width - offset['right'], image_height - offset['bottom']))
+        return image.crop((offset['left'], offset['top'], image_width - offset['right'],
+                           image_height - offset['bottom']))
 
     # Credit to chrisopherhan https://github.com/christopherhan/pycrop
     # This is just a slight rework of pycrops implimentation

@@ -43,8 +43,8 @@ class AdminImageWidget(forms.FileInput):
                 pass
             else:
                 output = (
-                    '<div style="float:left">'
-                    '<a style="width:%spx;display:block;margin:0 0 10px" class="thumbnail" target="_blank" href="%s">'
+                    '<a style="width:%spx;display:block;margin:0 0 10px" class="thumbnail"'
+                    'target="_blank" href="%s">'
                     '<img src="%s"></a>%s</div>'
                 ) % (mini.width, value.url, mini.url, output)
         return mark_safe(output)

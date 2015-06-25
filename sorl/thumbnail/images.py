@@ -1,3 +1,7 @@
+# encoding=utf-8
+
+from __future__ import unicode_literals, division
+import os
 import re
 
 from django.core.files.base import File, ContentFile
@@ -6,12 +10,10 @@ from django.utils.functional import LazyObject, empty
 
 from sorl.thumbnail import default
 from sorl.thumbnail.conf import settings
-
-from sorl.thumbnail.compat import json, urlopen, urlparse, urlsplit, \
-    quote, quote_plus, \
-    URLError, force_unicode, encode
-from sorl.thumbnail.helpers import ThumbnailError, \
-    tokey, get_module_class, deserialize
+from sorl.thumbnail.compat import (json, urlopen, urlparse, urlsplit,
+                                   quote, quote_plus,
+                                   URLError, force_unicode, encode)
+from sorl.thumbnail.helpers import ThumbnailError, tokey, get_module_class, deserialize
 from sorl.thumbnail.parsers import parse_geometry
 
 
@@ -43,8 +45,10 @@ def deserialize_image_file(s):
 
 
 class BaseImageFile(object):
+    size = []
+
     def exists(self):
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @property
     def width(self):
@@ -63,11 +67,11 @@ class BaseImageFile(object):
 
     @property
     def ratio(self):
-        return float(self.x) / self.y
+        return float(self.x) / float(self.y)
 
     @property
     def url(self):
-        raise NotImplemented()
+        raise NotImplementedError()
 
     src = url
 
@@ -94,6 +98,13 @@ class ImageFile(BaseImageFile):
             self.storage = UrlStorage()
         else:
             self.storage = default_storage
+
+        if hasattr(self.storage, 'location'):
+            location = self.storage.location
+            if not self.storage.location.endswith("/"):
+                location += "/"
+            if self.name.startswith(location):
+                self.name = self.name[len(location):]
 
     def __unicode__(self):
         return self.name
@@ -210,3 +221,23 @@ class UrlStorage(Storage):
 
     def delete(self, name):
         pass
+
+
+def delete_all_thumbnails():
+    storage = default.storage
+    path = os.path.join(storage.location, settings.THUMBNAIL_PREFIX)
+
+    def walk(path):
+        dirs, files = storage.listdir(path)
+        for f in files:
+            storage.delete(os.path.join(path, f))
+        for d in dirs:
+            directory = os.path.join(path, d)
+            walk(directory)
+            try:
+                full_path = storage.path(directory)
+            except Exception:
+                continue
+            os.rmdir(full_path)
+
+    walk(path)

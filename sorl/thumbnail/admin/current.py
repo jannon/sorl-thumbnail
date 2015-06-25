@@ -17,12 +17,13 @@ class AdminImageWidget(forms.ClearableFileInput):
     """
 
     template_with_initial = '%(clear_template)s<br />%(input_text)s: %(input)s'
-    template_with_clear = '%(clear)s <label style="width:auto" for="%(clear_checkbox_id)s">%(clear_checkbox_label)s</label>'
+    template_with_clear = ('%(clear)s <label style="width:auto" for="%(clear_checkbox_id)s">'
+                           '%(clear_checkbox_label)s</label>')
 
     def render(self, name, value, attrs=None):
         output = super(AdminImageWidget, self).render(name, value, attrs)
         if value and hasattr(value, 'url'):
-            ext = 'JPG'
+            ext = 'JPEG'
             try:
                 aux_ext = str(value).split('.')
                 if aux_ext[len(aux_ext) - 1].lower() == 'png':
@@ -34,11 +35,15 @@ class AdminImageWidget(forms.ClearableFileInput):
             except Exception as e:
                 logger.warn("Unable to get the thumbnail", exc_info=e)
             else:
-                output = (
-                    '<div style="float:left">'
-                    '<a style="width:%spx;display:block;margin:0 0 10px" class="thumbnail" target="_blank" href="%s">'
-                    '<img src="%s"></a>%s</div>'
-                ) % (mini.width, value.url, mini.url, output)
+                try:
+                    output = (
+                        '<div style="float:left">'
+                        '<a style="width:%spx;display:block;margin:0 0 10px" class="thumbnail" '
+                        'target="_blank" href="%s">'
+                        '<img src="%s"></a>%s</div>'
+                    ) % (mini.width, value.url, mini.url, output)
+                except AttributeError:
+                    pass
         return mark_safe(output)
 
 

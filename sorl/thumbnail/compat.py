@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 import sys
 import django
 
@@ -29,6 +31,12 @@ try:
     from django.utils.encoding import smart_text
 except ImportError:
     from django.utils.encoding import smart_unicode as smart_text
+
+try:
+    # Python >= 2.7
+    from importlib import import_module
+except ImportError:
+    from django.utils.importlib import import_module
 
 # Python 2 and 3
 

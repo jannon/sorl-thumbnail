@@ -54,7 +54,7 @@ class KVStoreBase(object):
 
     def delete(self, image_file, delete_thumbnails=True):
         """
-        Deletes the referense to the ``image_file`` and deletes the references
+        Deletes the reference to the ``image_file`` and deletes the references
         to thumbnails as well as thumbnail files if ``delete_thumbnails`` is
         `True``. Does not delete the ``image_file`` is self.
         """
@@ -79,6 +79,15 @@ class KVStoreBase(object):
 
             # Delete the thumbnails key from store
             self._delete(image_file.key, identity='thumbnails')
+
+    def delete_all_thumbnail_files(self):
+        for key in self._find_keys(identity='thumbnails'):
+            thumbnail_keys = self._get(key, identity='thumbnails')
+            if thumbnail_keys:
+                for key in thumbnail_keys:
+                    thumbnail = self._get(key)
+                    if thumbnail:
+                        thumbnail.delete()
 
     def cleanup(self):
         """
@@ -175,7 +184,7 @@ class KVStoreBase(object):
         """
         Gets the value from keystore, returns `None` if not found.
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def _set_raw(self, key, value):
         """
@@ -183,16 +192,16 @@ class KVStoreBase(object):
         chars. Value is a ``unicode`` object with an unknown (reasonable)
         length.
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def _delete_raw(self, *keys):
         """
         Deletes the keys. Silent failure for missing keys.
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def _find_keys_raw(self, prefix):
         """
         Finds all keys with prefix
         """
-        raise NotImplemented()
+        raise NotImplementedError()
