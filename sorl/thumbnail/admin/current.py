@@ -16,9 +16,11 @@ class AdminImageWidget(forms.ClearableFileInput):
     image as well as a link to the current one if it hase one.
     """
 
-    template_with_initial = '%(clear_template)s<br />%(input_text)s: %(input)s'
-    template_with_clear = ('%(clear)s <label style="width:auto" for="%(clear_checkbox_id)s">'
-                           '%(clear_checkbox_label)s</label>')
+    template_with_initial = (
+        '%(clear_template)s <br>'
+        '<label>%(input_text)s: %(input)s</label>'
+    )
+    template_with_clear = '<label>%(clear_checkbox_label)s: %(clear)s</label>'
 
     def render(self, name, value, attrs=None):
         output = super(AdminImageWidget, self).render(name, value, attrs)
@@ -28,6 +30,8 @@ class AdminImageWidget(forms.ClearableFileInput):
                 aux_ext = str(value).split('.')
                 if aux_ext[len(aux_ext) - 1].lower() == 'png':
                     ext = 'PNG'
+                elif aux_ext[len(aux_ext) - 1].lower() == 'gif':
+                    ext = 'GIF'
             except:
                 pass
             try:

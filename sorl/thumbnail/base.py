@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 EXTENSIONS = {
     'JPEG': 'jpg',
     'PNG': 'png',
+    'GIF': 'gif',
 }
 
 
@@ -54,6 +55,8 @@ class ThumbnailBackend(object):
             return 'JPEG'
         elif file_extension == '.png':
             return 'PNG'
+        elif file_extension == '.gif':
+            return 'GIF'
         else:
             from django.conf import settings
 
@@ -98,10 +101,11 @@ class ThumbnailBackend(object):
 
         # We have to check exists() because the Storage backend does not
         # overwrite in some implementations.
-        if not thumbnail.exists():
+        if settings.THUMBNAIL_FORCE_OVERWRITE or not thumbnail.exists():
             try:
                 source_image = default.engine.get_image(source)
-            except IOError:
+            except IOError as e:
+                logger.exception(e)
                 if settings.THUMBNAIL_DUMMY:
                     return DummyImageFile(geometry_string)
                 else:
