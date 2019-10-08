@@ -11,6 +11,8 @@ except ImportError:
     import ImageFile
     import ImageDraw
 
+EXIF_ORIENTATION = 0x0112
+
 
 def round_corner(radius, fill):
     """Draw a round corner"""
@@ -73,7 +75,7 @@ class Engine(EngineBase):
             exif = None
 
         if exif:
-            orientation = exif.get(0x0112)
+            orientation = exif.get(EXIF_ORIENTATION)
 
             if orientation == 2:
                 image = image.transpose(Image.FLIP_LEFT_RIGHT)
@@ -82,15 +84,27 @@ class Engine(EngineBase):
             elif orientation == 4:
                 image = image.transpose(Image.FLIP_TOP_BOTTOM)
             elif orientation == 5:
-                image = image.rotate(-90).transpose(Image.FLIP_LEFT_RIGHT)
+                image = image.rotate(-90, expand=1).transpose(Image.FLIP_LEFT_RIGHT)
             elif orientation == 6:
-                image = image.rotate(-90)
+                image = image.rotate(-90, expand=1)
             elif orientation == 7:
-                image = image.rotate(90).transpose(Image.FLIP_LEFT_RIGHT)
+                image = image.rotate(90, expand=1).transpose(Image.FLIP_LEFT_RIGHT)
             elif orientation == 8:
-                image = image.rotate(90)
+                image = image.rotate(90, expand=1)
 
         return image
+
+    def _flip_dimensions(self, image):
+        try:
+            exif = image._getexif()
+        except (AttributeError, IOError, KeyError, IndexError):
+            exif = None
+
+        if exif:
+            orientation = exif.get(0x0112)
+            return orientation in [5, 6, 7, 8]
+
+        return False
 
     def _colorspace(self, image, colorspace):
         if colorspace == 'RGB':
@@ -100,7 +114,7 @@ class Engine(EngineBase):
                 newimage = image.convert('RGBA')
                 transparency = image.info.get('transparency')
                 if transparency is not None:
-                    mask = Image.new('L', image.size, color=transparency)
+                    mask = image.convert('RGBA').split()[-1]
                     newimage.putalpha(mask)
                 return newimage
             return image.convert('RGB')

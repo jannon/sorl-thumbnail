@@ -15,11 +15,8 @@ parts/
 sdist/
 var/
 *.egg-info/
-.installed.cfg
 *.egg
-.coverage
-tests/htmlcov
-.tox
+.installed.cfg
 
 # Installer logs
 pip-log.txt
@@ -52,7 +49,7 @@ pip-delete-this-directory.txt
 docs/_build/
 
 # Virtualenv
-
+.python-version
 .env/
 
 # dbm stuff
@@ -60,4 +57,7 @@ tests/thumbnail_kvstore
 tests/thumbnail_kvstore.db
 tests/thumbnail_kvstore.lock
 
-/.settings
+# test related
+.coverage
+.tox
+htmlcov/

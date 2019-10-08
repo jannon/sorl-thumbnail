@@ -5,10 +5,10 @@ Thumbnails for Django.
 Features at a glance
 ====================
 
-- Support for Django 1.4, 1.5, 1.6, 1.7, 1.8, 1.9
-- Python 3 support (for Django 1.5, 1.6, 1.7, 1.8, 1.9)
+- Support for Django 1.8, 1.10, 1.11, following the `Django supported versions policy`_
+- Python 3 support
 - Storage support
-- Pluggable Engine support for `Pillow`_, `ImageMagick`_, `PIL`_, `Wand`_, `pgmagick`_, and`vipsthumbnail`_
+- Pluggable Engine support for `Pillow`_, `ImageMagick`_, `PIL`_, `Wand`_, `pgmagick`_, and `vipsthumbnail`_
 - Pluggable Key Value Store support (cached db, redis, and dynamodb by AWS)
 - Pluggable Backend support
 - Admin integration with possibility to delete
@@ -25,6 +25,12 @@ Read more in `the documentation (latest version) <http://sorl-thumbnail.rtfd.org
 Developers
 ==========
 
+|jazzband|
+
+This is a `Jazzband <https://jazzband.co>`_ project. By contributing you agree to 
+abide by the `Contributor Code of Conduct <https://jazzband.co/about/conduct>`_ 
+and follow the `guidelines <https://jazzband.co/about/guidelines>`_.
+
 Feel free to create a new Pull request if you want to propose a new feature.
 If you need development support or want to discuss with other developers
 join us in the channel #sorl-thumnbnail at freenode.net or Gitter.
@@ -34,7 +40,7 @@ in Google Groups.
 
 - IRC Channel: irc://irc.freenode.net/#sorl-thumbnail
 
-- Gitter: https://gitter.im/mariocesar/sorl-thumbnail
+- Gitter: https://gitter.im/jazzband/sorl-thumbnail
 
 - Mailing List: sorl-thumbnail@googlegroups.com https://groups.google.com/d/forum/sorl-thumbnail
 
@@ -133,7 +139,7 @@ Frequently asked questions
 Is so slow in Amazon S3 !
 -------------------------
 
-Posible related to the implementation of your Amazon S3 Backend, see the issue `#351`_
+Possible related to the implementation of your Amazon S3 Backend, see the `issue #351`_
 due the storage backend reviews if there is an existing thumbnail when tries to
 generate the thumbnail that makes an extensive use of the S3 API
 
@@ -144,13 +150,15 @@ A fast workaround if you are not willing to tweak your storage backend is to set
 So it will avoid to overly query the S3 API.
 
 
-
-.. |travis| image:: https://secure.travis-ci.org/mariocesar/sorl-thumbnail.png?branch=master
-    :target: https://travis-ci.org/mariocesar/sorl-thumbnail
+.. |travis| image:: https://travis-ci.org/jazzband/sorl-thumbnail.svg?branch=master
+    :target: https://travis-ci.org/jazzband/sorl-thumbnail
 .. |pypi| image:: https://badge.fury.io/py/sorl-thumbnail.png
     :target: http://badge.fury.io/py/sorl-thumbnail
-.. |coveralls| image:: https://coveralls.io/repos/mariocesar/sorl-thumbnail/badge.png?branch=master
-    :target: https://coveralls.io/r/mariocesar/sorl-thumbnail?branch=master
+.. |coveralls| image:: https://coveralls.io/repos/jazzband//sorl-thumbnail/badge.png?branch=master
+    :target: https://coveralls.io/r/jazzband//sorl-thumbnail?branch=master
+.. |jazzband| image:: https://jazzband.co/static/img/jazzband.svg
+   :target: https://jazzband.co/
+   :alt: Jazzband
 
 .. _`Pillow`: http://pillow.readthedocs.org/en/latest/
 .. _`ImageMagick`: http://www.imagemagick.org/script/index.php
@@ -162,4 +170,5 @@ So it will avoid to overly query the S3 API.
 .. _`Template examples`: http://sorl-thumbnail.readthedocs.org/en/latest/examples.html#template-examples
 .. _`Model examples`: http://sorl-thumbnail.readthedocs.org/en/latest/examples.html#model-examples
 .. _`Low level API examples`: http://sorl-thumbnail.readthedocs.org/en/latest/examples.html#low-level-api-examples
-.. _ `#351`: https://github.com/mariocesar/sorl-thumbnail/issues/351
+.. _`issue #351`: https://github.com/jazzband/sorl-thumbnail/issues/351
+.. _`Django supported versions policy`: https://www.djangoproject.com/download/#supported-versions

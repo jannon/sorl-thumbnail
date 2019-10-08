@@ -1,7 +1,7 @@
 language: python
 
 python:
-  - "3.4"
+  - "3.6"
 
 cache:
   pip:
@@ -10,71 +10,32 @@ cache:
     - .tox
 
 env:
-  - TOX_ENV=py27-django14-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py27-django14-imagemagick APT=imagemagick
-  - TOX_ENV=py27-django14-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py27-django14-redis
-  - TOX_ENV=py27-django14-wand
-  - TOX_ENV=py27-django14-pgmagick APT='libgraphicsmagick++1-dev libboost-python-dev'
-  - TOX_ENV=py27-django14-dbm
-  - TOX_ENV=py27-django15-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py27-django15-imagemagick APT=imagemagick
-  - TOX_ENV=py27-django15-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py27-django15-redis
-  - TOX_ENV=py27-django15-wand
-  - TOX_ENV=py27-django15-pgmagick APT='libgraphicsmagick++1-dev libboost-python-dev'
-  - TOX_ENV=py27-django15-dbm
-  - TOX_ENV=py27-django16-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py27-django16-imagemagick APT=imagemagick
-  - TOX_ENV=py27-django16-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py27-django16-redis
-  - TOX_ENV=py27-django16-wand
-  - TOX_ENV=py27-django16-pgmagick APT='libgraphicsmagick++1-dev libboost-python-dev'
-  - TOX_ENV=py27-django16-dbm
-  - TOX_ENV=py27-django17-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py27-django17-imagemagick APT=imagemagick
-  - TOX_ENV=py27-django17-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py27-django17-redis
-  - TOX_ENV=py27-django17-wand
-  - TOX_ENV=py27-django17-pgmagick APT='libgraphicsmagick++1-dev libboost-python-dev'
-  - TOX_ENV=py27-django17-dbm
-  - TOX_ENV=py27-django18-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py27-django18-imagemagick APT=imagemagick
-  - TOX_ENV=py27-django18-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py27-django18-redis
-  - TOX_ENV=py27-django18-wand
-  - TOX_ENV=py27-django18-pgmagick APT='libgraphicsmagick++1-dev libboost-python-dev'
-  - TOX_ENV=py27-django18-dbm
-  - TOX_ENV=py34-django15-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py34-django15-imagemagick APT=imagemagick
-  - TOX_ENV=py34-django15-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py34-django15-redis
-  - TOX_ENV=py34-django15-wand
-  - TOX_ENV=py34-django15-dbm
-  - TOX_ENV=py34-django16-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py34-django16-imagemagick APT=imagemagick
-  - TOX_ENV=py34-django16-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py34-django16-redis
-  - TOX_ENV=py34-django16-wand
-  - TOX_ENV=py34-django16-dbm
-  - TOX_ENV=py34-django17-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py34-django17-imagemagick APT=imagemagick
-  - TOX_ENV=py34-django17-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py34-django17-redis
-  - TOX_ENV=py34-django17-wand
-  - TOX_ENV=py34-django17-dbm
-  - TOX_ENV=py34-django18-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py34-django18-imagemagick APT=imagemagick
-  - TOX_ENV=py34-django18-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py34-django18-redis
-  - TOX_ENV=py34-django18-wand
-  - TOX_ENV=py34-django18-dbm
-  - TOX_ENV=py34-django19-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
-  - TOX_ENV=py34-django19-imagemagick APT=imagemagick
-  - TOX_ENV=py34-django19-graphicsmagick APT=graphicsmagick
-  - TOX_ENV=py34-django19-redis
-  - TOX_ENV=py34-django19-wand
-  - TOX_ENV=py34-django19-dbm
+  - TOXENV=py27-django18-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
+  - TOXENV=py27-django18-imagemagick APT=imagemagick
+  - TOXENV=py27-django18-graphicsmagick APT=graphicsmagick
+  - TOXENV=py27-django18-redis
+  - TOXENV=py27-django18-wand
+  - TOXENV=py27-django18-pgmagick APT='libgraphicsmagick++1-dev libboost-python-dev'
+  - TOXENV=py27-django18-dbm
+  - TOXENV=py34-django18-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
+  - TOXENV=py34-django18-imagemagick APT=imagemagick
+  - TOXENV=py34-django18-graphicsmagick APT=graphicsmagick
+  - TOXENV=py34-django18-redis
+  - TOXENV=py34-django18-wand
+  - TOXENV=py34-django18-dbm
+  - TOXENV=py35-django110-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
+  - TOXENV=py35-django110-imagemagick APT=imagemagick
+  - TOXENV=py35-django110-graphicsmagick APT=graphicsmagick
+  - TOXENV=py35-django110-redis
+  - TOXENV=py35-django110-wand
+  - TOXENV=py35-django110-dbm
+  - TOXENV=py36-django111-pil APT='libjpeg62 libjpeg62-dev zlib1g-dev'
+  - TOXENV=py36-django111-imagemagick APT=imagemagick
+  - TOXENV=py36-django111-graphicsmagick APT=graphicsmagick
+  - TOXENV=py36-django111-redis
+  - TOXENV=py36-django111-wand
+  - TOXENV=py36-django111-dbm
+
 
 before_install:
   - sudo apt-get update -qq
@@ -83,31 +44,28 @@ before_install:
 after_failure:
   - cat /home/travis/.pip/pip.log
 
-# after_success:
-#  - coveralls
+after_success: coveralls
 
 install:
-  - pip install pip wheel
-#  - pip install -q coveralls flake8 tox
-  - pip install -q flake8 tox
+  - pip install -q flake8 tox coveralls
 
 script:
   - env | sort
-  - tox -e $TOX_ENV
+  - tox
   - flake8 --show-source sorl/
 
 services:
   - redis-server
 
 notifications:
-  irc:
-    channels:
-      - "irc.freenode.org#sorl-thumbnail"
-    on_success: change
-    on_failure: change
-  webhooks:
-    urls:
-      - https://webhooks.gitter.im/e/b368c47d69637f9a01a0
-    on_success: change
-    on_failure: change
-    on_start: false     # default: false
+  email: false
+
+deploy:
+  provider: pypi
+  user: jazzband
+  distributions: sdist bdist_wheel
+  password:
+    secure: VD+63Tnv0VYNfFQv9f1KZ0k79HSX8veNk4dTy42Hriteci50z5uSQdZMnqqD83xQJa4VF6N7DHkxHnBVOWLCqGQZeYqR/5BuDFNUewcr6O14dk31HvxMsWDaN1KW0Qwtus8ZrztwGhZtZ/92ODA6luHI4mCTzqX0gcG0/aKd75s=
+  on:
+    tags: true
+    repo: jazzband/sorl-thumbnail
